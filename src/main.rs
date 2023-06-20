@@ -2,10 +2,11 @@ use chrono::{Local, DateTime};
 use std::{
     fs::File,
     io::Write,
+    io::stdin,
     env::current_exe,
 };
 
-fn main() {
+fn lap() {
     let now: DateTime<Local> = Local::now();
 
     let path: String;
@@ -25,4 +26,11 @@ fn main() {
 
     let mut file = File::create(filename).unwrap();
     file.write(&timestamp[..].as_bytes()).unwrap();
+}
+
+fn main() {
+    loop {
+        stdin().read_line(&mut String::new()).unwrap();
+        lap();
+    }
 }
