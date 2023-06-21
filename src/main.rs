@@ -8,8 +8,10 @@ use std::{
 };
 
 fn lap() {
+    // get current time
     let now: DateTime<Local> = Local::now();
 
+    // get file path
     let path: String;
 
     match current_exe() {
@@ -20,14 +22,14 @@ fn lap() {
     }
 
     let directory = format!("{}/{}", path, now.format("%Y%m%d"));
-    let filename = format!("{}/{}.txt", directory, now.format("%H%M%S%f"));
+    path = format!("{}/{}.txt", directory, now.format("%H%M%S%f"));
+
+    // format time
     let timestamp = format!("{}", now.format("%Y-%m-%d %H:%M:%S%.f"));
 
-    println!("{}", filename);
-    println!("{}", timestamp);
-
+    // make file and write
     create_dir_all(directory).unwrap();
-    let mut file = File::create(filename).unwrap();
+    let mut file = File::create(path).unwrap();
     file.write(&timestamp[..].as_bytes()).unwrap();
 }
 
