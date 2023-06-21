@@ -22,7 +22,8 @@ fn lap() {
             .join(folder_name)
     };
     let path = {
-        let filename = now.format("%H%M%S%f").to_string();
+        let timestamp = now.format("%H%M%S%f").to_string();
+        let filename = format!("{}.txt", timestamp);
         directory.join(filename)
     };
 
